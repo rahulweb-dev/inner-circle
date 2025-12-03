@@ -5,7 +5,7 @@ import AboutSection from './components/AboutSection';
 import TestimonialSection from './components/TestimonialSection';
 import InstagramPost from './components/InstagramPost';
 import Footer from './components/Footer';
-import ImageGallery from './(pages)/gallery/Gallery';
+import ImageGallery from './(pages)/gallery.php/Gallery';
 
 export default function Home() {
   return (
