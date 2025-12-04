@@ -51,11 +51,10 @@ export default function Navbar() {
             Pages ▾
             {dropdown && (
               <div className="absolute top-6 left-0 bg-white text-black rounded shadow-lg py-3 w-48">
-                <Link href="/gallery">
+                <Link href="/gallery.php">
                   <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Gallery</p>
                 </Link>
-                <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Restaurant</p>
-                <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Spa & Wellness</p>
+                <Link href='/ice_spice.php'><p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Restaurant</p></Link>
               </div>
             )}
           </li>
@@ -74,19 +73,17 @@ export default function Navbar() {
             Special Events ▾
             {eventDropdown && (
               <div className="absolute top-6 left-0 bg-white text-black rounded shadow-lg py-3 w-60">
-                <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href='banqueting-halls-&-private-dining'  ><p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Banqueting Halls & Private Dining
-                </p>
-                <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Dinner & Dance Venues
-                </p>
+                </p></Link>
+
               </div>
             )}
           </li>
 
           {/* Blog & Contact */}
           <li className="hover:text-orange-300 duration-200 cursor-pointer">Blog</li>
-          <li className="hover:text-orange-300 duration-200 cursor-pointer">Contact</li>
+          <Link href='/contact.php'><li className="hover:text-orange-300 duration-200 cursor-pointer">Contact</li></Link>
         </ul>
 
         {/* Right Button */}
@@ -128,7 +125,7 @@ export default function Navbar() {
             <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
               <Link href="/gallery.php">Gallery</Link>
               <p>Restaurant</p>
-              <p>Spa & Wellness</p>
+
             </div>
           </details>
 

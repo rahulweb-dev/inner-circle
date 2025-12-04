@@ -51,9 +51,7 @@ export default function Footer() {
             <li className="hover:text-white transition cursor-pointer">
               Dining
             </li>
-            <li className="hover:text-white transition cursor-pointer">
-              Spa & Wellness
-            </li>
+        
             <li className="hover:text-white transition cursor-pointer">
               Special Offers
             </li>

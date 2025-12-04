@@ -35,7 +35,7 @@ export default function ImageGallery() {
     <section className="w-full px-4 sm:px-10 lg:px-24 py-12">
       {/* Title */}
       <div className="text-center mb-10">
-        <img src="/sublogo.svg" className="mx-auto w-80 mb-3 opacity-70" />
+        <Image src="/sublogo.svg" className="mx-auto w-80 mb-3 opacity-70" width={100} height={100} alt="sublogo" />
         <h1 className="text-3xl md:text-4xl font-semibold tracking-wide">
           Image Gallery
         </h1>
@@ -48,10 +48,9 @@ export default function ImageGallery() {
             key={cat.key}
             onClick={() => setActive(cat.key)}
             className={`px-4 py-2 rounded-md text-xs font-semibold border transition 
-              ${
-                active === cat.key
-                  ? "bg-black text-white border-black"
-                  : "border-gray-300 text-gray-600 hover:bg-black hover:text-white"
+              ${active === cat.key
+                ? "bg-black text-white border-black"
+                : "border-gray-300 text-gray-600 hover:bg-black hover:text-white"
               }`}
           >
             {cat.label}

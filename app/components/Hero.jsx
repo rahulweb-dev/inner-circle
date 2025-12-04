@@ -32,13 +32,7 @@ export default function Hero() {
       <div className="absolute top-[47%] left-1/2 -translate-x-1/2 text-center text-white w-full px-4">
 
         {/* Logo */}
-        <Image
-          src="/logo.png"   // <--- FIXED (put your logo here)
-          width={120}
-          height={120}
-          className="mx-auto mb-4 opacity-90"
-          alt="Hotel Logo"
-        />
+     
 
         <h1 className="text-4xl md:text-6xl font-[BodoniModa] font-bold leading-tight drop-shadow-2xl">
           Stay in Comfort,
