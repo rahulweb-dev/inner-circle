@@ -7,7 +7,6 @@ import { FaInstagram, FaFacebookF, FaLinkedinIn, FaPhone } from "react-icons/fa"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
   const [eventDropdown, setEventDropdown] = useState(false); // NEW DROPDOWN STATE
 
   return (
@@ -42,28 +41,17 @@ export default function Navbar() {
 
           <li className="hover:text-orange-300 duration-200 cursor-pointer">Home</li>
 
-          {/* Pages Dropdown */}
-          <li
-            className="relative cursor-pointer"
-            onMouseEnter={() => setDropdown(true)}
-            onMouseLeave={() => setDropdown(false)}
-          >
-            Pages ▾
-            {dropdown && (
-              <div className="absolute top-6 left-0 bg-white text-black rounded shadow-lg py-3 w-48">
-                <Link href="/gallery.php">
-                  <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Gallery</p>
-                </Link>
-                <Link href='/ice_spice.php'><p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Restaurant</p></Link>
-              </div>
-            )}
-          </li>
+          <Link href="/ice_spice.php">
+            <li className="hover:text-orange-300 duration-200 cursor-pointer">Restaurant</li>
+          </Link>
 
           {/* Rooms */}
           <Link href="/rooms.php">
             <li className="hover:text-orange-300 duration-200 cursor-pointer">Rooms</li>
           </Link>
-
+          <Link href="/gallery.php">
+            <li className=" hover:text-orange-300 duration-200 cursor-pointer">Gallery</li>
+          </Link>
           {/* Special Events Dropdown (NEW) */}
           <li
             className="relative cursor-pointer"
@@ -76,7 +64,6 @@ export default function Navbar() {
                 <Link href='banqueting-halls-&-private-dining'  ><p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Banqueting Halls & Private Dining
                 </p></Link>
-
               </div>
             )}
           </li>
@@ -102,41 +89,116 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* ULTRA PREMIUM MOBILE MENU */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-black/90 text-white z-30 transform ${open ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-300`}
+        className={`md:hidden fixed top-0 right-0 h-full w-80 
+  bg-[rgba(0,0,0,0.75)] backdrop-blur-xl 
+  text-white z-[100] shadow-[0_0_40px_rgba(0,0,0,0.6)]
+  border-l border-[#e8c27d]/30
+  transform ${open ? "translate-x-0" : "translate-x-full"} 
+  transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]`}
       >
-        <ul className="flex flex-col p-6 gap-6 text-lg">
-          <li>Home</li>
-          <li>Rooms</li>
-          {/* Mobile Special Events Dropdown */}
-          <details className="cursor-pointer">
-            <summary>Special Events</summary>
-            <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
-              <p>Banqueting Halls & Private Dining</p>
-              <p>Dinner & Dance Venues</p>
+
+        {/* HEADER */}
+        <div className="flex justify-between items-center px-6 py-5 border-b border-[#e8c27d]/20 bg-black/20 backdrop-blur-lg">
+          <span className="text-xl font-semibold tracking-wider text-[#e8c27d]">
+            MENU
+          </span>
+
+          <FaTimes
+            onClick={() => setOpen(false)}
+            className="text-2xl cursor-pointer hover:text-[#e8c27d] transition-all"
+          />
+        </div>
+
+        {/* MENU LIST */}
+        <ul className="flex flex-col px-6 py-8 gap-6 text-[18px] tracking-wide font-light">
+
+          {/* HOME */}
+          <Link href="/" onClick={() => setOpen(false)}>
+            <li className="group cursor-pointer flex justify-between items-center">
+              <span className="group-hover:text-[#e8c27d] transition-all">Home</span>
+              <div className="opacity-0 group-hover:opacity-100 transition-all w-2 h-2 bg-[#e8c27d] rounded-full" />
+            </li>
+          </Link>
+
+          {/* ROOMS */}
+          <Link href="/rooms.php" onClick={() => setOpen(false)}>
+            <li className="group cursor-pointer flex justify-between items-center">
+              <span className="group-hover:text-[#e8c27d] transition-all">Rooms</span>
+              <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
+            </li>
+          </Link>
+
+          {/* RESTAURANT */}
+          <Link href="/ice_spice.php" onClick={() => setOpen(false)}>
+            <li className="group cursor-pointer flex justify-between items-center">
+              <span className="group-hover:text-[#e8c27d] transition-all">Restaurant</span>
+              <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
+            </li>
+          </Link>
+
+          {/* SPECIAL EVENTS DROPDOWN */}
+          <details className="group border-b border-[#e8c27d]/20 pb-4">
+            <summary className="cursor-pointer flex justify-between items-center list-none group-hover:text-[#e8c27d] transition-all">
+              Special Events
+              <span className="text-[#e8c27d] opacity-70 group-hover:opacity-100 transition">▾</span>
+            </summary>
+
+            <div className="ml-3 mt-4 flex flex-col gap-4 text-base text-gray-300">
+
+              <Link
+                href="/banqueting-halls-&-private-dining"
+                onClick={() => setOpen(false)}
+              >
+                <p className="hover:text-[#e8c27d] transition cursor-pointer">
+                  Banqueting Halls & Private Dining
+                </p>
+              </Link>
+
             </div>
           </details>
 
-          {/* Mobile Pages Dropdown */}
-          <details className="cursor-pointer">
-            <summary>Pages</summary>
-            <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
-              <Link href="/gallery.php">Gallery</Link>
-              <p>Restaurant</p>
+          {/* GALLERY */}
+          <Link href="/gallery.php" onClick={() => setOpen(false)}>
+            <li className="group cursor-pointer flex justify-between items-center">
+              <span className="group-hover:text-[#e8c27d] transition-all">Gallery</span>
+              <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
+            </li>
+          </Link>
 
-            </div>
-          </details>
+          {/* BLOG */}
+          <Link href="#" onClick={() => setOpen(false)}>
+            <li className="group cursor-pointer flex justify-between items-center">
+              <span className="group-hover:text-[#e8c27d] transition-all">Blog</span>
+              <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
+            </li>
+          </Link>
 
-          <li>Blog</li>
-          <li>Contact</li>
+          {/* CONTACT */}
+          <Link href="/contact.php" onClick={() => setOpen(false)}>
+            <li className="group cursor-pointer flex justify-between items-center">
+              <span className="group-hover:text-[#e8c27d] transition-all">Contact</span>
+              <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
+            </li>
+          </Link>
 
-          <button className="border border-white px-6 py-2 rounded hover:bg-white hover:text-black duration-300">
+          {/* RESERVATION */}
+          <button
+            onClick={() => setOpen(false)}
+            className="mt-6 w-full py-3 rounded-xl bg-gradient-to-r 
+      from-[#e8c27d] to-[#f7dca4] text-black font-semibold 
+      shadow-[0_0_20px_rgba(232,194,125,0.5)]
+      hover:shadow-[0_0_30px_rgba(232,194,125,0.7)] transition-all"
+          >
             Reservation
           </button>
+
         </ul>
       </div>
+
+
+
     </>
   );
 }
