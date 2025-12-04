@@ -93,7 +93,7 @@ export default function Navbar() {
       <div
         className={`md:hidden fixed top-0 right-0 h-full w-80 
   bg-[rgba(0,0,0,0.75)] backdrop-blur-xl 
-  text-white z-[100] shadow-[0_0_40px_rgba(0,0,0,0.6)]
+  text-white z-100 shadow-[0_0_40px_rgba(0,0,0,0.6)]
   border-l border-[#e8c27d]/30
   transform ${open ? "translate-x-0" : "translate-x-full"} 
   transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]`}
@@ -182,18 +182,16 @@ export default function Navbar() {
               <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
             </li>
           </Link>
-
           {/* RESERVATION */}
           <button
             onClick={() => setOpen(false)}
-            className="mt-6 w-full py-3 rounded-xl bg-gradient-to-r 
+            className="mt-6 w-full py-3 rounded-xl bg-linear-to-r 
       from-[#e8c27d] to-[#f7dca4] text-black font-semibold 
       shadow-[0_0_20px_rgba(232,194,125,0.5)]
       hover:shadow-[0_0_30px_rgba(232,194,125,0.7)] transition-all"
           >
             Reservation
           </button>
-
         </ul>
       </div>
 

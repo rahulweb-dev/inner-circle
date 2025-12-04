@@ -1,4 +1,5 @@
 "use client";
+import OrderForm from "@/app/components/Forms/OrderForm";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -900,83 +901,10 @@ export default function MenuZomato() {
       {/* 🟡 MODAL */}
       {showModal && (
         <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-4">
-          <div className="bg-[#222] w-full max-w-md rounded-3xl p-6 shadow-2xl border border-[#e8c27d]/40">
-
-            <h2 className="text-3xl text-center font-extrabold text-[#e8c27d] mb-6">
-              Order – {selectedProduct}
-            </h2>
-
-            {/* Inputs */}
-            <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 rounded-xl bg-[#333] text-white outline-none"
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              />
-
-              <input
-                type="text"
-                placeholder="Phone Number"
-                className="w-full px-4 py-3 rounded-xl bg-[#333] text-white outline-none"
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              />
-
-              <input
-                type="text"
-                placeholder="Room Number"
-                className="w-full px-4 py-3 rounded-xl bg-[#333] text-white outline-none"
-                onChange={(e) => setFormData({ ...formData, room: e.target.value })}
-              />
-
-              {/* Quantity */}
-              <div className="flex items-center justify-between bg-[#333] px-4 py-3 rounded-xl">
-                <p className="font-semibold">Quantity</p>
-
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => handleQtyChange("dec")}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-red-500"
-                  >
-                    –
-                  </button>
-
-                  <span className="text-lg font-bold">{quantity}</span>
-
-                  <button
-                    onClick={() => handleQtyChange("inc")}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-green-500"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-
-              <input
-                type="text"
-                readOnly
-                value={`${selectedProduct} (x${quantity})`}
-                className="w-full px-4 py-3 rounded-xl bg-[#444] text-white"
-              />
-            </div>
-
-            {/* Buttons */}
-            <div className="flex gap-4 mt-8">
-              <button
-                onClick={closeModal}
-                className="w-1/2 py-3 bg-gray-500 rounded-xl"
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={handleSubmit}
-                className="w-1/2 py-3 bg-[#e8c27d] text-black font-bold rounded-xl"
-              >
-                Submit Order
-              </button>
-            </div>
-          </div>
+          <OrderForm
+            selectedProduct={selectedProduct}
+            onClose={closeModal}
+          />
         </div>
       )}
 

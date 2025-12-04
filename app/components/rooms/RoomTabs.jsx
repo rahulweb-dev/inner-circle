@@ -20,6 +20,7 @@ import {
   FaFire,
   FaTag,
 } from "react-icons/fa";
+import BookingForm from "../Forms/BookingForm";
 
 export default function RoomTabs() {
   const [active, setActive] = useState("standard");
@@ -221,7 +222,7 @@ export default function RoomTabs() {
               {room.badges.map((b, i) => (
                 <span
                   key={i}
-                  className="text-xs px-2 py-1 rounded-md bg-gradient-to-r from-orange-400 to-rose-500 text-white font-semibold flex items-center gap-1"
+                  className="text-xs px-2 py-1 rounded-md bg-linear-to-r from-orange-400 to-rose-500 text-white font-semibold flex items-center gap-1"
                 >
                   {b.includes("VIP") ? <FaStar /> : b === "Popular" ? <FaFire /> : <FaTag />}
                   <span>{b.replace("★ ", "")}</span>
@@ -294,7 +295,7 @@ export default function RoomTabs() {
               <SwiperSlide key={i}>
                 <div className="relative w-full h-full">
                   <Image src={src} fill alt="room" className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent" />
                 </div>
               </SwiperSlide>
             ))}
@@ -304,48 +305,12 @@ export default function RoomTabs() {
 
       {/* BOOKING MODAL */}
       {openForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative">
-
-            <button
-              onClick={() => setOpenForm(false)}
-              className="absolute top-4 right-4 text-gray-700"
-            >
-              <FaTimes size={20} />
-            </button>
-
-            <h4 className="text-xl font-semibold mb-2">{room.title}</h4>
-            <p className="text-sm text-gray-600 mb-4">{room.desc}</p>
-
-            <form className="space-y-3">
-              <input className="w-full border p-3 rounded" placeholder="Your name" />
-              <input className="w-full border p-3 rounded" placeholder="Email address" />
-
-              <div className="flex gap-3">
-                <input type="date" className="w-1/2 border p-3 rounded" />
-                <input type="date" className="w-1/2 border p-3 rounded" />
-              </div>
-
-              <div className="flex gap-3">
-                <select className="w-1/2 border p-3 rounded">
-                  <option>1 Adult</option>
-                  <option>2 Adults</option>
-                  <option>3 Adults</option>
-                </select>
-
-                <select className="w-1/2 border p-3 rounded">
-                  <option>0 Child</option>
-                  <option>1 Child</option>
-                </select>
-              </div>
-
-              <button className="w-full bg-amber-500 text-white py-3 rounded font-semibold">
-                Confirm Booking — {room.price}
-              </button>
-            </form>
-          </div>
-        </div>
+        <BookingForm
+          room={room}
+          onClose={() => setOpenForm(false)}
+        />
       )}
+
     </>
   );
 }

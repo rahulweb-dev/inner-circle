@@ -3,7 +3,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Image from "next/image";
 
 export default function Hero() {
   const [checkIn, setCheckIn] = useState(new Date());
@@ -26,7 +25,7 @@ export default function Hero() {
       </video>
 
       {/* Black Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60 -z-10"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/60 -z-10"></div>
 
       {/* HERO CONTENT */}
       <div className="absolute top-[47%] left-1/2 -translate-x-1/2 text-center text-white w-full px-4">

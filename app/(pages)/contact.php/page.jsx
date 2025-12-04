@@ -20,7 +20,7 @@ export default function ContactPage() {
         />
 
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 to-black/60"></div>
 
         {/* Text */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white text-center px-4">
@@ -86,7 +86,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-2 gap-12">
 
           {/* Contact Form */}
-          <div className="bg-gradient-to-br from-white to-[#f9f7f5] shadow-xl border border-gray-200 rounded-3xl p-10">
+          <div className="bg-linear-to-br from-white to-[#f9f7f5] shadow-xl border border-gray-200 rounded-3xl p-10">
             <ContactForm
               title="Write To Us"
               description="Our team will respond within a few hours with complete details."
