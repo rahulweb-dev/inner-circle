@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
@@ -9,32 +10,18 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 export default function ServicesSwiper() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1200); // simulate loading time
+  }, []);
+
   const services = [
-    {
-      title: "Wedding Planning",
-      subtitle: "Your Dream Wedding, Perfectly Planned",
-      img: "/Deluxe-King.avif",
-    },
-    {
-      title: "Fine Dinning",
-      subtitle: "Your Dream Wedding, Perfectly Planned",
-      img: "/Deluxe-King.avif",
-    },
-    {
-      title: "Corporate Event Decor",
-      subtitle: "Your Dream Wedding, Perfectly Planned",
-      img: "/Deluxe-King.avif",
-    },
-    {
-      title: "Dinner Planning",
-      subtitle: "Your Dream Wedding, Perfectly Planned",
-      img: "/Deluxe-King.avif",
-    },
-    {
-      title: "Dinner Planning",
-      subtitle: "Your Dream Wedding, Perfectly Planned",
-      img: "/Deluxe-King.avif",
-    },
+    { title: "Wedding Planning", subtitle: "Your Dream Wedding, Perfectly Planned", img: "/Deluxe-King.avif" },
+    { title: "Fine Dinning", subtitle: "Your Dream Wedding, Perfectly Planned", img: "/Deluxe-King.avif" },
+    { title: "Corporate Event Decor", subtitle: "Your Dream Wedding, Perfectly Planned", img: "/Deluxe-King.avif" },
+    { title: "Dinner Planning", subtitle: "Your Dream Wedding, Perfectly Planned", img: "/Deluxe-King.avif" },
+    { title: "Dinner Planning", subtitle: "Your Dream Wedding, Perfectly Planned", img: "/Deluxe-King.avif" },
   ];
 
   return (
@@ -49,7 +36,7 @@ export default function ServicesSwiper() {
 
       <div className="container mx-auto px-4 relative">
 
-        {/* Left / Right Buttons */}
+        {/* Custom Nav Buttons */}
         <button
           className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg w-12 h-12 rounded-full flex items-center justify-center hover:bg-gray-100"
         >
@@ -62,46 +49,77 @@ export default function ServicesSwiper() {
           <span className="text-2xl font-bold text-gray-700">›</span>
         </button>
 
-        <Swiper
-          modules={[Pagination, Navigation]}
-          navigation={{
-            nextEl: ".swiper-button-next-custom",
-            prevEl: ".swiper-button-prev-custom",
-          }}
-          pagination={{ clickable: true }}
-          spaceBetween={30}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            640: { slidesPerView: 1.2 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 },
-          }}
-          className="pb-10"
-        >
-          {services.map((item, index) => (
-            <SwiperSlide key={index}>
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg w-full max-w-[420px] mx-auto">
-                {/* image */}
-                <div className="w-full h-[330px] sm:h-[400px] md:h-[420px] overflow-hidden">
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    width={500}
-                    height={500}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+        {/* ⭐ Show Skeleton While Loading */}
+        {loading ? (
+          <Swiper
+            spaceBetween={30}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 1.2 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}
+            className="pb-10"
+          >
+            {Array.from({ length: 4 }).map((_, i) => (
+              <SwiperSlide key={i}>
+                <div className="bg-white rounded-xl overflow-hidden shadow-lg w-full max-w-[420px] mx-auto animate-pulse">
+                  {/* Skeleton image */}
+                  <div className="w-full h-[330px] sm:h-[400px] md:h-[420px] bg-gray-200"></div>
 
-                {/* text */}
-                <div className="py-4 text-center">
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="text-gray-500 text-sm mt-1">{item.subtitle}</p>
+                  {/* Skeleton text */}
+                  <div className="py-4 text-center">
+                    <div className="h-5 w-3/4 bg-gray-200 mx-auto rounded mb-2"></div>
+                    <div className="h-4 w-1/2 bg-gray-200 mx-auto rounded"></div>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          /* ⭐ Real Swiper After Loading */
+          <Swiper
+            modules={[Pagination, Navigation]}
+            navigation={{
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
+            }}
+            pagination={{ clickable: true }}
+            spaceBetween={30}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 1.2 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}
+            className="pb-10"
+          >
+            {services.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="bg-white rounded-xl overflow-hidden shadow-lg w-full max-w-[420px] mx-auto">
+                  {/* image */}
+                  <div className="w-full h-[330px] sm:h-[400px] md:h-[420px] overflow-hidden">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* text */}
+                  <div className="py-4 text-center">
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <p className="text-gray-500 text-sm mt-1">{item.subtitle}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
     </section>
   );
