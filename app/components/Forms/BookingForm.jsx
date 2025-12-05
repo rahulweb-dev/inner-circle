@@ -8,7 +8,7 @@ export default function BookingForm({ room, onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone: '',
     checkIn: "",
     checkOut: "",
     adults: "1",

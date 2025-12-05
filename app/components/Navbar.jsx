@@ -69,7 +69,7 @@ export default function Navbar() {
           </li>
 
           {/* Blog & Contact */}
-          <li className="hover:text-orange-300 duration-200 cursor-pointer">Blog</li>
+          {/* <li className="hover:text-orange-300 duration-200 cursor-pointer">Blog</li> */}
           <Link href='/contact.php'><li className="hover:text-orange-300 duration-200 cursor-pointer">Contact</li></Link>
         </ul>
 
@@ -168,12 +168,12 @@ export default function Navbar() {
           </Link>
 
           {/* BLOG */}
-          <Link href="#" onClick={() => setOpen(false)}>
+          {/* <Link href="#" onClick={() => setOpen(false)}>
             <li className="group cursor-pointer flex justify-between items-center">
               <span className="group-hover:text-[#e8c27d] transition-all">Blog</span>
               <div className="opacity-0 group-hover:opacity-100 w-2 h-2 bg-[#e8c27d] rounded-full transition-all" />
             </li>
-          </Link>
+          </Link> */}
 
           {/* CONTACT */}
           <Link href="/contact.php" onClick={() => setOpen(false)}>
